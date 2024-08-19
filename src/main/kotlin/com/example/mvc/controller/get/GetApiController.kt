@@ -1,10 +1,6 @@
 package com.example.mvc.controller.get
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestMethod
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController          // REST API Controller 동작
 @RequestMapping("/api")  // http://localhost:8080/api
@@ -31,5 +27,16 @@ class GetApiController {
 
         println("${_name}, ${age}")
         return "$_name $age"
+    }
+
+    // https://localhost/api/page?key=value&key=value&key=value
+    @GetMapping("/get-mapping/query-param")     // ?name=steve&age=20
+    fun queryParam(
+        @RequestParam name: String,
+        @RequestParam(value = "age") age: Int
+    ): String {
+        println("${name}, ${age}")
+
+        return "$name $age"
     }
 }
