@@ -1,5 +1,6 @@
 package com.example.mvc.controller.get
 
+import com.example.mvc.controller.model.http.UserRequest
 import org.springframework.web.bind.annotation.*
 
 @RestController          // REST API Controller 동작
@@ -38,5 +39,12 @@ class GetApiController {
         println("${name}, ${age}")
 
         return "$name $age"
+    }
+
+    // name, age, address, email
+    @GetMapping("/get-mapping/query-param/object")
+    fun queryParamObject(userRequest: UserRequest): UserRequest {
+        println(userRequest)
+        return userRequest
     }
 }
